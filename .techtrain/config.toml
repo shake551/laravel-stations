@@ -1,4 +1,0 @@
-apiEndpoint = "https://app.techbowl.co.jp/api/v2"
-
-[auth]
-apiToken = "4246ff6bf603dcf64de1c9d68a7a88adaf9ca57bca0538e922d297d19824e0a97732157655157081"
