@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $movies = Movie::factory(30)->create();
+        $movies = Movie::factory(30)->create();
         // $movies->map(function ($movie) {
         //     for ($i = 0; $i < 10; $i++) {
         //         Schedule::factory()->create([
