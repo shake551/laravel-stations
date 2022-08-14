@@ -27,12 +27,13 @@ class MovieController extends Controller
 
     public function create(Request $request)
     {
-        $param = [
-            'title' => $request->title,
-            'image_url' => $request->image_url,
-            'published_year' => $request->published_year,
-            'description' => $request->description
-        ];
+        $request->validate([
+            'title'=>["required","unique:App\Models\Movie,title"],
+            'image_url'=>["required","url"],
+            'published_year'=>["required","numeric"],
+            'description'=>["required","string"],
+            'is_showing'=>["required","boolean"]
+        ]);
 
         $movie = new Movie();
 
@@ -54,6 +55,14 @@ class MovieController extends Controller
     }
 
     public function update(Request $request, $id) {
+        $request->validate([
+            'title'=>["required","unique:App\Models\Movie,title"],
+            'image_url'=>["required","url"],
+            'published_year'=>["required","numeric"],
+            'description'=>["required","string"],
+            'is_showing'=>["required","boolean"]
+        ]);
+
         $movie = Movie::where('id', $id)->get()[0];
 
         $movie->title = $request->title;

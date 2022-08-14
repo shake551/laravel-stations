@@ -8,6 +8,7 @@
 </head>
 <body>
     <form action="{{ url('/admin/movies/'.$movie->id.'/update') }}" method="POST">
+        @method('PATCH')
         {{ csrf_field() }}
         <label for="">タイトル</label>
         <input type="text" name="title" id="title" value="{{$movie->title}}">
@@ -18,7 +19,7 @@
         <label for="">概要</label>
         <input type="text" name="description" id="description" value="{{$movie->description}}">
         <label for="">上映中かどうか</label>
-        <input type="checkbox" name="is_showing" id="is_showing" value="{{$movie->is_showing}}">
+        <input type="checkbox" name="is_showing" id="is_showing" @checked($movie->is_showing) value="1">{{$movie->is_showing?"上映中":"上映予定"}}
 
         <input type="submit" value="送信">
     </form>

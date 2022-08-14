@@ -20,7 +20,11 @@
     @foreach ($movies as $movie)
         <tr>
             <td><a href="{{ url('/admin/movies/'.$movie->id.'/edit') }}">編集</a></td>
-            <td><a href="{{ url('/admin/movies/'.$movie->id.'/destroy') }}" onclick="return confirm('本当に削除しますか?')">削除</a></td>
+            <td><form action="{{ url('/admin/movies/'.$movie->id.'/destroy') }}" method="post">
+                @method('delete')
+                @csrf
+                <input type="submit" text="削除" value="削除" onclick="return confirm('本当に削除しますか?')">
+            </form></td>
             <td>タイトル: {{ $movie->title }}</td>
             <td>画像URL: {{ $movie->image_url }}</td>
             <td>公開日: {{ $movie->published_year }}</td>
