@@ -28,3 +28,5 @@ Route::get('/movie', [MovieController::class, 'getMovie']);
 Route::get('/admin/movie', [MovieController::class, 'getAdminMovie']);
 Route::post('/admin/movies/store', [MovieController::class, 'create']);
 Route::get('/admin/movies/create', [MovieController::class, 'createPage']);
+Route::get('/admin/movies/{id}/edit', [MovieController::class, 'getItem']);
+Route::post('/admin/movies/{id}/update', [MovieController::class, 'update']);

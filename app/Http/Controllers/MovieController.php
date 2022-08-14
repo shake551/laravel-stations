@@ -34,7 +34,7 @@ class MovieController extends Controller
             'description' => $request->description
         ];
 
-        $movie = Movie::cerate($param);
+        $movie = new Movie();
 
         $movie->title = $request->title;
         $movie->image_url = $request->image_url;
@@ -42,6 +42,26 @@ class MovieController extends Controller
         $movie->description = $request->description;
         $movie->is_showing = $request->is_showing;
         $movie->save();
+        return redirect("/");
+    }
+
+    public function getItem($id) {
+        $movie = Movie::where('id', $id)->get();
+
+        if (empty($movie)) return;
+
+        return view('adminMovieEdit', ['movie' => $movie[0]]);
+    }
+
+    public function update(Request $request, $id) {
+        $movie = Movie::where('id', $id)->get()[0];
+
+        $movie->title = $request->title;
+        $movie->image_url = $request->image_url;
+        $movie->published_year = $request->published_year;
+        $movie->description = $request->description;
+        $movie->is_showing = $request->is_showing;
+        $movie->update();
         return redirect("/");
     }
 }
