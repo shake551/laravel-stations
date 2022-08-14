@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Movie;
+use App\Models\Movie;
 
 
 class MovieController extends Controller
@@ -63,5 +63,15 @@ class MovieController extends Controller
         $movie->is_showing = $request->is_showing;
         $movie->update();
         return redirect("/");
+    }
+
+    public function delete($id)
+    {
+        $movie = Movie::find($id);
+
+        if (empty($movie)) return abort(404);
+
+        $movie->delete();
+        return redirect('/admin/movies')->with('flash_message', '削除しました');;
     }
 }

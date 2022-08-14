@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Movie;
+use App\Models\Movie;
 use App\Models\Schedule;
 use Carbon\CarbonImmutable;
 use App\Practice;

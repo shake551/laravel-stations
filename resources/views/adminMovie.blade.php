@@ -10,6 +10,7 @@
     <table>
         <tr>
             <th></th>
+            <th></th>
             <th>タイトル</th>
             <th>画像URL</th>
             <th>公開日</th>
@@ -19,6 +20,7 @@
     @foreach ($movies as $movie)
         <tr>
             <td><a href="{{ url('/admin/movies/'.$movie->id.'/edit') }}">編集</a></td>
+            <td><a href="{{ url('/admin/movies/'.$movie->id.'/destroy') }}" onclick="return confirm('本当に削除しますか?')">削除</a></td>
             <td>タイトル: {{ $movie->title }}</td>
             <td>画像URL: {{ $movie->image_url }}</td>
             <td>公開日: {{ $movie->published_year }}</td>
