@@ -6,18 +6,64 @@ use Illuminate\Http\Request;
 
 use App\Models\Movie;
 
-
 class MovieController extends Controller
 {
-    public function getMovie()
+    public function getMovie(Request $request)
     {
-        $movies = Movie::all();
+        $is_showing = $request->is_showing;
+
+        $keyword = $request->keyword;
+
+        if (empty($keyword)) {
+            if ($is_showing != "") {
+                $movies = Movie::where('is_showing', $is_showing)->get();
+                
+                return view('getMovie', ['movies' => $movies]);
+            }
+            
+            $movies = Movie::all();
+            return view('getMovie', ['movies' => $movies]);
+        }
+
+        if ($is_showing != "") {
+            $movies = Movie::where('title', 'like', '%'.$keyword.'%')
+            ->orWhere('description', 'like', '%'.$keyword.'%')
+            ->where('is_showing', $is_showing)
+            ->get();
+
+            return view('getMovie', ['movies' => $movies]);
+        }
+
+        $movies = Movie::where('title', 'like', '%'.$keyword.'%')
+        ->orWhere('description', 'like', '%'.$keyword.'%')
+        ->get();
+
+
         return view('getMovie', ['movies' => $movies]);
     }
 
-    public function getAdminMovie()
+    public function getAdminMovie(Request $request)
     {
-        $movies = Movie::all();
+        $is_showing = $request->is_showing;
+
+        if ($is_showing != "") {
+            $movies = Movie::where('is_showing', $is_showing)->get();
+
+            return view('adminMovie', ['movies' => $movies]);
+        } 
+
+        $keyword = $request->keyword;
+
+        if (empty($keyword)) {
+            $movies = Movie::all();
+            return view('adminMovie', ['movies' => $movies]);
+        }
+
+        $movies = Movie::where('title', 'like', '%'.$keyword.'%')
+        ->orWhere('description', 'like', '%'.$keyword.'%')
+        ->get();
+
+
         return view('adminMovie', ['movies' => $movies]);
     }
 

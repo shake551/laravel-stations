@@ -24,7 +24,7 @@ Route::get('/practice2', [PracticeController::class, 'sample2']);
 Route::get('/practice3', [PracticeController::class, 'sample3']);
 
 Route::get('/getPractice', [PracticeController::class, 'getPractice']);
-Route::get('/movie', [MovieController::class, 'getMovie']);
+Route::get('/movies', [MovieController::class, 'getMovie']);
 Route::get('/admin/movies', [MovieController::class, 'getAdminMovie']);
 Route::post('/admin/movies/store', [MovieController::class, 'create']);
 Route::get('/admin/movies/create', [MovieController::class, 'createPage']);
