@@ -26,10 +26,11 @@ Route::get('/practice3', [PracticeController::class, 'sample3']);
 
 Route::get('/getPractice', [PracticeController::class, 'getPractice']);
 Route::get('/movies', [MovieController::class, 'getMovie']);
+Route::get('/movies/{id}', [MovieController::class, 'getItem']);
 Route::get('/admin/movies', [MovieController::class, 'getAdminMovie']);
 Route::post('/admin/movies/store', [MovieController::class, 'create']);
 Route::get('/admin/movies/create', [MovieController::class, 'createPage']);
-Route::get('/admin/movies/{id}/edit', [MovieController::class, 'getItem']);
+Route::get('/admin/movies/{id}/edit', [MovieController::class, 'getAdminItem']);
 Route::patch('/admin/movies/{id}/update', [MovieController::class, 'update']);
 Route::delete('/admin/movies/{id}/destroy', [MovieController::class, 'delete']);
 

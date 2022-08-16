@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Movie;
+use App\Models\Schedule;
 
 class MovieController extends Controller
 {
@@ -92,12 +93,22 @@ class MovieController extends Controller
         return redirect("/");
     }
 
-    public function getItem($id) {
+    public function getAdminItem($id) {
         $movie = Movie::where('id', $id)->get();
 
         if (empty($movie)) return;
 
         return view('adminMovieEdit', ['movie' => $movie[0]]);
+    }
+
+    public function getItem($id) {
+        $movie = Movie::find($id);
+
+        $schedules = Schedule::where('movie_id', $id)->get();
+
+        if (empty($movie) || empty($schedules)) return abort(404);
+
+        return view('getMovieItem', ['movie' => $movie, 'schedules' => $schedules]);
     }
 
     public function update(Request $request, $id) {
