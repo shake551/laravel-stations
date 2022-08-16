@@ -27,9 +27,9 @@ class DatabaseSeeder extends Seeder
         //         ]);
         //     }
         // });
-        // $this->call([
-        //     SheetTableSeeder::class,
-        // ]);
+        $this->call([
+            SheetTableSeeder::class,
+        ]);
         Practice::factory(10)->create();
     }
 }

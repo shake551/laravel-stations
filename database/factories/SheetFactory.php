@@ -14,7 +14,8 @@ class SheetFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'column' => $this->faker->randomDigitNotNull,
+            'row' => $this->faker->randomLetter,
         ];
     }
 }
